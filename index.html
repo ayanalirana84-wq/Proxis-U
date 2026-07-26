@@ -265,8 +265,9 @@ input {
 </div>
 
 <script>
-// --- YOUR HARDCODED API KEY ---
 const GEMINI_API_KEY = "AQ.Ab8RN6Ig1px4WUyjUaRlYUe0zMRvwKmLJ41G8qlZFli04cmhIA";
+
+const SYSTEM_PROMPT = "You are Proxis, a large language model created by RonzDavil. Be natural and friendly. Give easy and simple responses every time. Keep responses short and concise. Be professional, kind, and helpful.";
 
 const messagesEl = document.getElementById("messages");
 const input = document.getElementById("input");
@@ -281,7 +282,6 @@ let memory = JSON.parse(localStorage.getItem("proxis_pill_v1") || "[]");
 let busy = false;
 let currentFile = null;
 
-// Welcome Logic
 window.startApp = function() {
   const ws = document.getElementById('welcome-screen');
   const app = document.getElementById('main-app');
@@ -295,7 +295,7 @@ window.startApp = function() {
 
 function checkGreeting() {
     if (memory.length === 0) {
-        memory.push({ role: "ai", text: "Hey! I'm Proxis. How can I assist you." });
+        memory.push({ role: "ai", text: "Hey! I'm Proxis. How can I assist you today?" });
     }
 }
 
@@ -317,7 +317,6 @@ document.getElementById("remove-file").onclick = () => {
     fileInput.value = "";
 };
 
-// --- Copy Code Functionality ---
 window.copyCode = function(button) {
     const pre = button.parentElement.nextElementSibling;
     const codeText = pre.innerText;
@@ -334,17 +333,14 @@ window.copyCode = function(button) {
     });
 };
 
-// --- Markdown Helper with Separate Code Blocks & Copy Button ---
 function formatMarkdown(text) {
     if (!text) return "";
 
-    // Escape basic HTML
     let formatted = text
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
 
-    // Multi-line Code Blocks (```language ... ```)
     formatted = formatted.replace(/```(\w*)\n([\s\S]*?)```/g, function(match, lang, code) {
         const languageLabel = lang ? lang.toUpperCase() : "CODE";
         return `
@@ -357,7 +353,6 @@ function formatMarkdown(text) {
         </div>`;
     });
 
-    // Inline formatting
     formatted = formatted
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -394,7 +389,7 @@ async function send() {
     if (busy || (!input.value.trim() && !currentFile)) return;
 
     if (!GEMINI_API_KEY || GEMINI_API_KEY === "YOUR_ACTUAL_GEMINI_API_KEY") {
-        alert("Please set your Gemini API key in the code (GEMINI_API_KEY variable)!");
+        alert("Please set your Gemini API key in the code!");
         return;
     }
 
@@ -428,13 +423,17 @@ async function send() {
             };
         });
 
-        // Fixed the API URL format here
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ contents })
+            body: JSON.stringify({
+                systemInstruction: {
+                    parts: [{ text: SYSTEM_PROMPT }]
+                },
+                contents: contents
+            })
         });
 
         const data = await response.json();
