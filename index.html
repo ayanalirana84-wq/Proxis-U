@@ -576,7 +576,7 @@ Persona & Communication Style:
 
         // Auto-switch to vision model if image attachment exists
         const selectedModel = messageContent.some(item => item.type === 'image_url')
-          ? "llama-3.2-11b-vision-preview"
+          ? "openai/gpt-oss-120b"
           : "openai/gpt-oss-120b";
 
         const chatCompletion = await groq.chat.completions.create({
