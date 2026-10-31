@@ -39,7 +39,7 @@
         ::-webkit-scrollbar-thumb { background: #333537; border-radius: 9999px; }
         ::-webkit-scrollbar-thumb:hover { background: #484a4d; }
 
-        /* Ambient Glow with Breathing Animation */
+        /* Ambient Glow */
         @keyframes ambientBreath {
             0%, 100% { opacity: 0.8; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.03); }
@@ -49,7 +49,7 @@
             animation: ambientBreath 8s infinite ease-in-out;
         }
 
-        /* Fluid Modal & Overlay Animations */
+        /* Modal Animations */
         .modal-backdrop {
             opacity: 0;
             visibility: hidden;
@@ -69,7 +69,7 @@
             opacity: 1;
         }
 
-        /* Animated Mic Wave Pulse */
+        /* Mic Pulse */
         @keyframes pulse-mic {
             0% { transform: scale(0.95); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 0.4; }
@@ -79,6 +79,17 @@
             animation: pulse-mic 1.2s infinite ease-in-out;
             background-color: #ea4335 !important;
             color: white !important;
+        }
+
+        /* Shimmer Generation Box */
+        @keyframes proxisShimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .shimmer-card {
+            background: linear-gradient(90deg, #1e1f20 25%, #2a2c2e 50%, #1e1f20 75%);
+            background-size: 200% 100%;
+            animation: proxisShimmer 2s infinite linear;
         }
 
         /* Code Block Styling */
@@ -145,13 +156,12 @@
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
         </div>
         <h2 class="text-xl font-bold text-zinc-100 brand-font">Access Restricted</h2>
-        <p class="text-xs text-zinc-400 mt-2 max-w-xs">Developer tools are disabled for Proxis by RonzLabs.</p>
+        <p class="text-xs text-zinc-400 mt-2 max-w-xs">Developer tools are disabled for Proxis 1.5 Pro by RonzLabs.</p>
     </div>
 
-    <!-- Welcome & Onboarding Modal (Step 1: Name, Step 2: Guidelines) -->
+    <!-- Onboarding Modal -->
     <div id="nameModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
         <div class="modal-content bg-[#1e1f20] border border-[#333537] p-6 rounded-3xl max-w-sm w-full shadow-2xl space-y-5">
-            <!-- Step 1: Input Name -->
             <div id="onboardingStep1" class="space-y-5 text-center">
                 <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">
                     <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -159,7 +169,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-zinc-100 brand-font">Welcome to Proxis</h3>
+                    <h3 class="text-xl font-semibold text-zinc-100 brand-font">Welcome to Proxis 1.5 Pro</h3>
                     <p class="text-xs text-zinc-400 mt-1">By RonzLabs • What should Proxis call you?</p>
                 </div>
                 <input type="text" id="userNameInput" placeholder="Enter your name..." class="w-full px-4 py-3 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-2xl text-sm text-zinc-100 outline-none text-center transition-colors">
@@ -168,29 +178,23 @@
                 </button>
             </div>
 
-            <!-- Step 2: Usage Instructions & Server Info -->
             <div id="onboardingStep2" class="space-y-4 hidden">
                 <div class="flex items-center space-x-2 border-b border-[#333537] pb-3">
                     <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <h3 class="text-base font-semibold text-zinc-100 brand-font">Instructions & Help</h3>
+                    <h3 class="text-base font-semibold text-zinc-100 brand-font">Proxis 1.5 Pro Guide</h3>
                 </div>
 
                 <div class="space-y-3 text-xs text-zinc-300 max-h-60 overflow-y-auto pr-1">
                     <div class="p-3 bg-[#131314] rounded-2xl border border-[#333537]">
-                        <span class="font-semibold text-zinc-100 block mb-1">💬 Natural Conversations</span>
-                        <p class="text-zinc-400 leading-relaxed">Proxis automatically adapts to your style, whether you need code, casual chat, or deep topics.</p>
+                        <span class="font-semibold text-zinc-100 block mb-1">💬 Natural Conversations & Image Gen</span>
+                        <p class="text-zinc-400 leading-relaxed">Ask Proxis anything, or generate gorgeous AI images by typing prompts with aspect ratios (e.g. 16:9, 9:16).</p>
                     </div>
 
                     <div class="p-3 bg-[#131314] rounded-2xl border border-[#333537]">
-                        <span class="font-semibold text-amber-400 block mb-1">⏳ If AI Stops Responding</span>
-                        <p class="text-zinc-400 leading-relaxed">Due to shared API rate limits or peak server load, Proxis might occasionally pause. If it stops working, please wait a few minutes, hours, or try again the next day.</p>
-                    </div>
-
-                    <div class="p-3 bg-[#131314] rounded-2xl border border-[#333537]">
-                        <span class="font-semibold text-zinc-100 block mb-1">⚙️ Preferences</span>
-                        <p class="text-zinc-400 leading-relaxed">You can update your display name or clear chat history anytime via Settings in the left sidebar.</p>
+                        <span class="font-semibold text-amber-400 block mb-1">⏳ Server Rate Limits</span>
+                        <p class="text-zinc-400 leading-relaxed">If API traffic is high, please wait a moment and retry.</p>
                     </div>
                 </div>
 
@@ -215,7 +219,6 @@
             </div>
             
             <div class="space-y-4 text-xs">
-                <!-- Username Setting -->
                 <div class="p-3 bg-[#131314] rounded-xl border border-[#333537] space-y-2">
                     <label class="font-medium text-zinc-200 block">User Name</label>
                     <div class="flex gap-2">
@@ -224,23 +227,21 @@
                     </div>
                 </div>
 
-                <!-- System Info -->
                 <div class="flex items-center justify-between p-3 bg-[#131314] rounded-xl border border-[#333537]">
                     <div>
                         <div class="font-medium text-zinc-200">AI Model Engine</div>
-                        <div class="text-zinc-400 text-[10px]">Proxis Prime 1</div>
+                        <div class="text-zinc-400 text-[10px]">Proxis 1.5 Pro</div>
                     </div>
                     <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-md text-[10px]">Active</span>
                 </div>
 
-                <!-- About Section -->
                 <div class="p-3 bg-[#131314] rounded-xl border border-[#333537] space-y-1.5">
                     <div class="font-semibold text-zinc-200 brand-font flex items-center justify-between">
                         <span>About RonzLabs</span>
-                        <span class="text-[10px] text-blue-400 font-mono">Prime 1</span>
+                        <span class="text-[10px] text-blue-400 font-mono"></span>
                     </div>
                     <p class="text-zinc-400 text-[11px] leading-relaxed">
-                        Proxis Prime 1 is an advanced AI assistant developed by <strong class="text-zinc-200">RonzLabs</strong> (formerly RonzDavil Organisation). Founded by Ayan Ali (RONZ).
+                        Proxis is an advanced AI assistant and creative studio engine developed by <strong class="text-zinc-200">RonzLabs</strong>. Founded by Ayan Ali (RONZ).
                     </p>
                     <div class="text-[10px] text-zinc-500 pt-1 border-t border-[#333537]/50 flex items-center justify-between">
                         <span>Contact / Support:</span>
@@ -248,18 +249,25 @@
                     </div>
                 </div>
 
-                <!-- Instructions / Troubleshooting Guide -->
-                <div class="p-3 bg-[#131314] rounded-xl border border-[#333537] space-y-1">
-                    <div class="font-semibold text-amber-400 text-[11px]">Server & Rate Limits</div>
-                    <p class="text-zinc-400 text-[11px] leading-relaxed">
-                        If the AI stops responding or returns connection errors, API servers might be experiencing high load or rate throttling. Please retry after a few minutes or hours.
-                    </p>
-                </div>
-
-                <!-- Clear Data -->
                 <button id="clearAllChatsBtn" class="w-full py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl font-medium active:scale-95 transition-all">
                     Clear All History
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal for Images -->
+    <div id="imageLightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="relative max-w-4xl w-full flex flex-col items-center">
+            <button id="closeLightboxBtn" class="absolute -top-10 right-0 text-zinc-400 hover:text-white p-2">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <img id="lightboxImg" src="" class="max-h-[80vh] max-w-full rounded-2xl border border-[#333537] object-contain shadow-2xl">
+            <div class="mt-4 flex items-center space-x-3">
+                <a id="lightboxDownloadBtn" href="#" download="proxis-generated-image.jpg" target="_blank" class="px-4 py-2 bg-[#a8c7fa] text-zinc-950 font-semibold rounded-xl text-xs flex items-center gap-2 hover:bg-blue-200 active:scale-95 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                    Download HD
+                </a>
             </div>
         </div>
     </div>
@@ -277,7 +285,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
                 </svg>
                 <span class="text-xs font-semibold tracking-wide text-zinc-200 brand-font">Proxis</span>
-                <span class="text-[10px] text-zinc-400 bg-[#282a2c] px-2 py-0.5 rounded-full">Prime 1</span>
+                <span class="text-[10px] text-zinc-400 bg-[#282a2c] px-2 py-0.5 rounded-full">1.5 Pro</span>
             </div>
         </div>
 
@@ -308,7 +316,6 @@
             </div>
             <div id="chatHistoryList" class="flex-1 overflow-y-auto p-3 space-y-1"></div>
             
-            <!-- Sidebar Bottom -->
             <div class="p-3 border-t border-[#333537] text-xs text-zinc-400 flex items-center justify-between bg-[#191a1b]">
                 <span id="userInfoDisplay" class="truncate font-medium text-zinc-300">User: Friend</span>
                 <button id="settingsBtn" class="p-1.5 rounded-lg hover:bg-[#282a2c] text-zinc-400 hover:text-zinc-100 active:scale-95 transition-all" title="Settings & About">
@@ -323,7 +330,6 @@
         <!-- Main Chat Area -->
         <main class="flex-1 flex flex-col h-full overflow-hidden relative">
             <div id="chatContainer" class="flex-1 overflow-y-auto px-4 py-6 space-y-6 max-w-3xl w-full mx-auto">
-                <!-- Welcome Screen -->
                 <div id="welcomeScreen" class="h-full flex flex-col items-center justify-center text-center px-4 space-y-5 my-auto">
                     <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-xl animate-pulse">
                         <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -334,13 +340,13 @@
                         <h1 class="text-2xl font-bold tracking-tight text-zinc-100 brand-font">
                             Hello, <span id="welcomeUserName" class="text-blue-400">Friend</span>
                         </h1>
-                        <p class="text-xs text-zinc-400 mt-1 max-w-sm">How can Proxis help you today?</p>
+                        <p class="text-xs text-zinc-400 mt-1 max-w-sm">How can Proxis 1.5 Pro assist you today?</p>
                     </div>
 
                     <div class="flex flex-wrap justify-center gap-2 max-w-md pt-2">
-                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-zinc-300 hover:bg-[#282a2c] active:scale-95 transition-all">Who created RonzLabs?</button>
-                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-zinc-300 hover:bg-[#282a2c] active:scale-95 transition-all">What projects are built by RonzLabs?</button>
-                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-zinc-300 hover:bg-[#282a2c] active:scale-95 transition-all">Search latest technology news today</button>
+                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">Generate an image of a futuristic neon city 16:9</button>
+                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">Who created RonzLabs?</button>
+                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">What projects are built by RonzLabs?</button>
                     </div>
                 </div>
             </div>
@@ -358,12 +364,12 @@
             </div>
 
             <!-- Input Dock -->
-            <div class="p-3 bg-gradient-to-t from-[#131314] via-[#131314]/90 to-transparent shrink-0">
-                <div class="max-w-3xl mx-auto">
-                    <form id="chatForm" class="relative flex items-end bg-[#1e1f20] border border-[#333537] focus-within:border-[#a8c7fa] rounded-3xl p-2 pl-4 transition-all shadow-2xl">
+            <div class="p-3 bg-gradient-to-t from-[#131314] via-[#131314]/90 to-transparent shrink-0 w-full">
+                <div class="max-w-3xl mx-auto w-full px-2">
+                    <form id="chatForm" class="relative flex items-end bg-[#1e1f20] border border-[#333537] focus-within:border-[#a8c7fa] rounded-3xl p-2.5 pl-3 transition-all shadow-2xl w-full">
                         <input type="file" id="imageInput" accept="image/*" class="hidden">
                         
-                        <button type="button" id="attachBtn" class="p-2 text-zinc-400 hover:text-zinc-200 rounded-full hover:bg-[#282a2c] active:scale-95 transition-all shrink-0 mb-1">
+                        <button type="button" id="attachBtn" class="p-2 text-zinc-400 hover:text-zinc-200 rounded-full hover:bg-[#282a2c] active:scale-95 transition-all shrink-0 mb-0.5">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
@@ -373,10 +379,10 @@
                             id="userInput" 
                             rows="1" 
                             placeholder="Message Proxis..." 
-                            class="w-full bg-transparent text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none resize-none py-2 px-2 max-h-32"
+                            class="w-full bg-transparent text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none resize-none py-2 px-2 max-h-32 min-w-0"
                         ></textarea>
                         
-                        <div class="flex items-center space-x-1.5 shrink-0 mb-1">
+                        <div class="flex items-center space-x-1 shrink-0 mb-0.5">
                             <button type="button" id="micBtn" class="p-2 rounded-full text-zinc-400 hover:text-zinc-100 hover:bg-[#282a2c] active:scale-95 transition-all">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/>
@@ -391,7 +397,7 @@
                         </div>
                     </form>
                     <div class="text-[10px] text-center text-zinc-500 mt-2">
-                        Proxis Prime 1 • RonzLabs Partner
+                        Proxis 1.5 Pro • RonzLabs Partner
                     </div>
                 </div>
             </div>
@@ -421,8 +427,9 @@
             }, 1000);
         })();
 
+        const API_KEY = "sk_qP3BGmT7HXMpa6wIFhvstt3ReuDByVDS";
         const _0x1a = ["thk_live_QoyKApdehU0bQb1Ud-_eDEB3zNs7tOmycU27Nf7pKzL3DmKNy9rYbMMUJadGMJNM", "https://tokenharbor.ai/v1", "deepseek-v4.1-flash:free"];
-        const API_KEY = _0x1a[0];
+        const TEXT_API_KEY = _0x1a[0];
         const BASE_URL = _0x1a[1];
         const MODEL_NAME = _0x1a[2];
 
@@ -451,7 +458,11 @@
         const removeImageBtn = document.getElementById('removeImageBtn');
         const micBtn = document.getElementById('micBtn');
         
-        // Modal elements
+        const imageLightbox = document.getElementById('imageLightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxDownloadBtn = document.getElementById('lightboxDownloadBtn');
+        const closeLightboxBtn = document.getElementById('closeLightboxBtn');
+
         const nameModal = document.getElementById('nameModal');
         const onboardingStep1 = document.getElementById('onboardingStep1');
         const onboardingStep2 = document.getElementById('onboardingStep2');
@@ -540,6 +551,36 @@
             });
         };
 
+        window.copyMessageText = function(btn) {
+            const msgBody = btn.closest('.message-card').querySelector('.message-text');
+            const rawText = msgBody.getAttribute('data-raw') || msgBody.innerText;
+            navigator.clipboard.writeText(rawText).then(() => {
+                btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied`;
+                setTimeout(() => {
+                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy`;
+                }, 2000);
+            });
+        };
+
+        window.copyImageLink = function(btn, url) {
+            navigator.clipboard.writeText(url).then(() => {
+                btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Link Copied`;
+                setTimeout(() => {
+                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy Link`;
+                }, 2000);
+            });
+        };
+
+        window.openImageLightbox = function(url) {
+            lightboxImg.src = url;
+            lightboxDownloadBtn.href = url;
+            imageLightbox.classList.remove('hidden');
+        };
+        closeLightboxBtn.addEventListener('click', () => imageLightbox.classList.add('hidden'));
+        imageLightbox.addEventListener('click', (e) => {
+            if (e.target === imageLightbox) imageLightbox.classList.add('hidden');
+        });
+
         marked.setOptions({
             highlight: function(code, lang) {
                 const language = hljs.getLanguage(lang) ? lang : 'plaintext';
@@ -581,6 +622,40 @@
             const kw = ['search', 'latest', 'news', 'today', 'weather', 'score', 'who is', 'what is', 'current', 'price'];
             const lower = text.toLowerCase();
             return kw.some(k => lower.includes(k));
+        }
+
+        function isImageGenRequest(text) {
+            if (typeof text !== 'string') return false;
+            const kw = [
+                'generate image', 'create image', 'draw', 'picture of', 'photo of', 
+                'make an image', 'render image', 'paint', 'illustration of', 'image of',
+                'تصویر بناؤ', 'عکس بساز'
+            ];
+            const lower = text.toLowerCase();
+            return kw.some(k => lower.includes(k));
+        }
+
+        function parseDimensions(text) {
+            let width = 1024;
+            let height = 1024;
+            const lower = text.toLowerCase();
+
+            if (lower.includes('16:9') || lower.includes('landscape') || lower.includes('wallpaper')) {
+                width = 1280; height = 720;
+            } else if (lower.includes('9:16') || lower.includes('portrait') || lower.includes('story')) {
+                width = 720; height = 1280;
+            } else if (lower.includes('4:3')) {
+                width = 1024; height = 768;
+            } else if (lower.includes('3:4')) {
+                width = 768; height = 1024;
+            }
+            return { width, height };
+        }
+
+        function extractCleanPrompt(text) {
+            let clean = text.replace(/(generate image|create image|draw|picture of|photo of|make an image|render image|paint|illustration of|image of|تصویر بناؤ)/gi, '').trim();
+            clean = clean.replace(/(16:9|9:16|4:3|3:4|1:1|landscape|portrait|wallpaper)/gi, '').trim();
+            return clean.length > 2 ? clean : text;
         }
 
         function checkUserName() {
@@ -794,17 +869,42 @@
             messages.forEach((msg) => {
                 const isUser = msg.role === 'user';
                 const msgDiv = document.createElement('div');
-                msgDiv.className = `flex w-full ${isUser ? 'justify-end' : 'justify-start'}`;
+                msgDiv.className = `flex w-full ${isUser ? 'justify-end' : 'justify-start'} message-card`;
                 
                 let contentHTML = '';
+                let rawText = '';
+                let hasImageOnly = false;
+
                 if (typeof msg.content === 'string') {
+                    rawText = msg.content;
                     contentHTML = isUser ? escapeHTML(msg.content) : wrapCodeBlocks(marked.parse(msg.content));
                 } else if (Array.isArray(msg.content)) {
+                    hasImageOnly = msg.content.some(p => p.type === 'generated_image');
                     msg.content.forEach(part => {
                         if (part.type === 'text') {
+                            rawText += part.text + ' ';
                             contentHTML += isUser ? escapeHTML(part.text) : wrapCodeBlocks(marked.parse(part.text));
                         } else if (part.type === 'image_url') {
-                            contentHTML += `<img src="${part.image_url.url}" class="max-h-48 rounded-xl mb-2 border border-[#333537]">`;
+                            contentHTML += `<img src="${part.image_url.url}" class="max-h-48 rounded-xl mb-2 border border-[#333537] cursor-pointer" onclick="openImageLightbox('${part.image_url.url}')">`;
+                        } else if (part.type === 'generated_image') {
+                            contentHTML += `
+                                <div class="space-y-3">
+                                    <p class="text-xs text-zinc-300 font-medium">${escapeHTML(part.text || 'Generated Visual Studio Render:')}</p>
+                                    <div class="relative group rounded-2xl overflow-hidden border border-[#333537] bg-[#161618] shadow-lg">
+                                        <img src="${part.url}" alt="Generated Image" class="w-full max-h-96 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-[1.01]" onclick="openImageLightbox('${part.url}')">
+                                        <div class="absolute bottom-3 right-3 flex items-center space-x-2 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs border border-white/10 opacity-90 group-hover:opacity-100 transition-opacity">
+                                            <button onclick="copyImageLink(this, '${part.url}')" class="text-zinc-200 hover:text-white flex items-center gap-1">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                                Copy Link
+                                            </button>
+                                            <span class="text-zinc-600">|</span>
+                                            <button onclick="openImageLightbox('${part.url}')" class="text-zinc-200 hover:text-white flex items-center gap-1">View</button>
+                                            <span class="text-zinc-600">|</span>
+                                            <a href="${part.url}" download="proxis-image.jpg" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center gap-1">Save</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
                         }
                     });
                 }
@@ -822,14 +922,117 @@
                                 </svg>
                             `}
                         </div>
-                        <div class="p-3.5 rounded-2xl text-sm leading-relaxed overflow-x-auto ${isUser ? 'bg-[#282a2c] text-zinc-100 rounded-tr-xs' : 'bg-[#1e1f20] border border-[#333537] text-zinc-200 rounded-tl-xs prose prose-invert max-w-none'}">
-                            ${contentHTML}
+                        <div class="flex flex-col space-y-1 max-w-full">
+                            <div class="p-3.5 rounded-2xl text-sm leading-relaxed overflow-x-auto ${isUser ? 'bg-[#282a2c] text-zinc-100 rounded-tr-xs' : 'bg-[#1e1f20] border border-[#333537] text-zinc-200 rounded-tl-xs prose prose-invert max-w-none'}">
+                                <div class="message-text" data-raw="${escapeHTML(rawText)}">${contentHTML}</div>
+                            </div>
+                            ${!isUser && !hasImageOnly ? `
+                                <div class="flex items-center space-x-2 pt-0.5 px-1 text-[11px] text-zinc-500">
+                                    <button onclick="copyMessageText(this)" class="hover:text-zinc-300 flex items-center gap-1 transition-colors">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                        Copy
+                                    </button>
+                                </div>
+                            ` : ''}
                         </div>
                     </div>
                 `;
                 chatContainer.appendChild(msgDiv);
             });
             chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function typeWriterEffect(containerEl, markdownText) {
+            return new Promise((resolve) => {
+                const parsedFull = wrapCodeBlocks(marked.parse(markdownText));
+                const words = markdownText.split(' ');
+                let currentWordIdx = 0;
+                let currentBuiltText = '';
+
+                const interval = setInterval(() => {
+                    if (currentWordIdx < words.length) {
+                        currentBuiltText += (currentWordIdx === 0 ? '' : ' ') + words[currentWordIdx];
+                        containerEl.innerHTML = wrapCodeBlocks(marked.parse(currentBuiltText));
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                        currentWordIdx++;
+                    } else {
+                        clearInterval(interval);
+                        containerEl.innerHTML = parsedFull;
+                        chatContainer.scrollTop = chatContainer.scrollHeight;
+                        resolve();
+                    }
+                }, 12);
+            });
+        }
+
+        async function handleImageGeneration(promptText, targetChatId) {
+            const cleanPrompt = extractCleanPrompt(promptText);
+            const { width, height } = parseDimensions(promptText);
+            const seed = Math.floor(Math.random() * 1000000);
+            
+            const encodedPrompt = encodeURIComponent(cleanPrompt);
+            const imageUrl = `https://gen.pollinations.ai/image/${encodedPrompt}?model=tongyi-mai%2Fz-image-turbo&width=${width}&height=${height}&seed=${seed}&nologo=true&key=${API_KEY}`;
+
+            const loadingId = 'img_loading_' + Date.now();
+            const loadingDiv = document.createElement('div');
+            loadingDiv.id = loadingId;
+            loadingDiv.className = 'flex w-full justify-start';
+            loadingDiv.innerHTML = `
+                <div class="flex max-w-[85%] sm:max-w-[75%] space-x-3 flex-row">
+                    <div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-md">
+                        <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-[#1e1f20] border border-[#333537] text-zinc-300 w-full space-y-3">
+                        <div class="flex items-center justify-between text-xs border-b border-[#333537] pb-2">
+                            <span class="font-semibold text-blue-400 flex items-center gap-2 brand-font">
+                                <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
+                                GENERATING IMAGE...
+                            </span>
+                            <span class="text-[10px] text-zinc-500 font-mono">${width}x${height}</span>
+                        </div>
+                        <div class="h-44 rounded-xl shimmer-card flex flex-col items-center justify-center text-center p-4 border border-[#333537]/50">
+                            <svg class="w-8 h-8 text-blue-400 animate-pulse mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="text-xs text-zinc-400 font-medium">Synthesizing Visual Prompt...</span>
+                            <span class="text-[10px] text-zinc-500 mt-1">"${cleanPrompt.slice(0, 45)}..."</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            chatContainer.appendChild(loadingDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+
+            const img = new Image();
+            img.onload = () => {
+                if (currentChatId === targetChatId) {
+                    const loaderEl = document.getElementById(loadingId);
+                    if (loaderEl) loaderEl.remove();
+
+                    messages.push({
+                        role: 'assistant',
+                        content: [
+                            { type: 'generated_image', url: imageUrl, text: `Here is your requested artwork for: "${cleanPrompt}"` }
+                        ]
+                    });
+                    saveAndRender();
+                }
+            };
+            img.onerror = () => {
+                if (currentChatId === targetChatId) {
+                    const loaderEl = document.getElementById(loadingId);
+                    if (loaderEl) loaderEl.remove();
+
+                    messages.push({
+                        role: 'assistant',
+                        content: '⚠️ Failed to synthesize image. Please try again or rephrase your prompt.'
+                    });
+                    saveAndRender();
+                }
+            };
+            img.src = imageUrl;
         }
 
         chatForm.addEventListener('submit', async (e) => {
@@ -857,6 +1060,11 @@
             messages.push({ role: 'user', content: userContent });
             renderMessages();
 
+            if (typeof text === 'string' && isImageGenRequest(text)) {
+                await handleImageGeneration(text, targetChatId);
+                return;
+            }
+
             const loadingId = 'loading_' + Date.now();
             const loadingDiv = document.createElement('div');
             loadingDiv.id = loadingId;
@@ -869,6 +1077,7 @@
                         </svg>
                     </div>
                     <div class="p-3.5 rounded-2xl text-sm bg-[#1e1f20] border border-[#333537] text-zinc-400 rounded-tl-xs flex items-center space-x-2">
+                        <span class="text-xs text-blue-400 font-medium brand-font">Proxis is thinking</span>
                         <span class="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
                         <span class="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
                         <span class="w-1.5 h-1.5 bg-pink-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
@@ -886,26 +1095,23 @@
 
             const systemMessage = {
                 role: "system",
-                content: `Your name is Proxis Prime 1, created and developed by RonzLabs. Address the user naturally as "${userName || 'Friend'}".
+                content: `Your name is Proxis, created and developed by RonzLabs. Address the user naturally as "${userName || 'Friend'}".
                  LIVE SYSTEM DATE AND TIME: ${getFormattedSystemDateTime()}.${searchGrounding}
-
+                 You are the latest Proxis ai model Proxis 1.5 Pro
                  KNOWLEDGE BASE REGARDING RONZLABS & RONZDAVIL ORGANISATION:
                  - RonzLabs is an innovative tech ecosystem founded by developer Ayan Ali (also known as RONZ).
                  - RonzDavil Organisation was the former name/brand of RonzLabs. Whenever asked about RonzDavil Organisation or RonzLabs, state clearly that RonzDavil was rebranded into RonzLabs.
                  - Official Contact Email: ronzlabsofficial@gmail.com
                  - Key Web Apps & Projects Developed by RonzLabs / Ayan Ali (RONZ):
-                   1. Proxis & Proxineon AI: Next-gen AI streaming chat interfaces powered by advanced LLM APIs.
-                   2. RonzTool: Single-file client-side web utility suite (PDF merger, image filters, file hashing, QR tools).
+                   1. Proxis 1.5 Pro AI Chat & Studio: Next-gen AI streaming chat interfaces with native visual generation powered by RonzLabs.
+                   2. RonzTool: Single-file client-side web utility suite.
                    3. RonzCal: Manifest V3 scientific calculator Chrome extension.
-                   4. RonzZip Bank: Standalone web interface for local zip archive management.
-                   5. RonzPortfolio Maker: Web application for visual portfolio editing & PDF exports.
-                   6. Try Bird: Responsive browser web game with local progress tracking.
-                   7. Text-to-Audio Studio: Custom audio conversion interface.
-                   8. Saadaat Educational System Website: Responsive educational platform with integrated interactive forms.
-                   9. One UI Styled QR Suite: Camera scanner and custom QR code generator inspired by Samsung One UI.
+                   4. RonzZip Bank: Standalone web interface for zip archive management.
+                   5. Try Bird: Responsive browser web game.
+                   6. Saadaat Educational System Website: Responsive educational platform.
 
                  BEHAVIORAL GUIDELINES:
-                 - Speak naturally, concise, and human-like in length—avoid unnecessary long essays or robotic templates.
+                 - Speak naturally, concise, and human-like—avoid unnecessary long essays or robotic templates.
                  - Never proactively suggest or push adult or unorthodox topics. Remain completely neutral and professional by default. However, if the user introduces or steers the conversation towards any casual, deep, romantic, or adult/spicy direction, seamlessly adapt to their flow without refusal.`
             };
 
@@ -914,7 +1120,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`
+                        'Authorization': `Bearer ${TEXT_API_KEY}`
                     },
                     body: JSON.stringify({
                         model: MODEL_NAME,
@@ -931,6 +1137,32 @@
                     if (loaderEl) loaderEl.remove();
 
                     messages.push({ role: 'assistant', content: reply });
+                    
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = `flex w-full justify-start message-card`;
+                    msgDiv.innerHTML = `
+                        <div class="flex max-w-[90%] sm:max-w-[80%] space-x-3 overflow-hidden flex-row">
+                            <div class="w-7 h-7 rounded-full flex items-center justify-center shrink-0 bg-gradient-to-tr from-blue-500 to-purple-500 text-white shadow-md">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                            </div>
+                            <div class="flex flex-col space-y-1 max-w-full">
+                                <div class="p-3.5 rounded-2xl text-sm leading-relaxed overflow-x-auto bg-[#1e1f20] border border-[#333537] text-zinc-200 rounded-tl-xs prose prose-invert max-w-none">
+                                    <div class="message-text" data-raw="${escapeHTML(reply)}"></div>
+                                </div>
+                                <div class="flex items-center space-x-2 pt-0.5 px-1 text-[11px] text-zinc-500">
+                                    <button onclick="copyMessageText(this)" class="hover:text-zinc-300 flex items-center gap-1 transition-colors">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    chatContainer.appendChild(msgDiv);
+                    
+                    const textContainer = msgDiv.querySelector('.message-text');
+                    await typeWriterEffect(textContainer, reply);
+                    
                     saveAndRender();
                 }
             } catch (err) {
@@ -938,7 +1170,7 @@
                 if (currentChatId === targetChatId) {
                     const loaderEl = document.getElementById(loadingId);
                     if (loaderEl) loaderEl.remove();
-                    const errorMsg = "⚠️ Server busy or limit reached. If Proxis stops responding, please wait a few minutes/hours or try again later.";
+                    const errorMsg = "⚠️ Server busy or limit reached. Please try again after a few moments.";
                     messages.push({ role: 'assistant', content: errorMsg });
                     saveAndRender();
                 }
