@@ -1118,8 +1118,8 @@
 
             try {
                 if (updateStatusCallback) updateStatusCallback("Proxis Prime is analyzing & sanitizing prompt...");
-                // Using CORS Proxy for production domain compatibility
-                const response = await fetch("https://corsproxy.io/?https://api.xkiro.com/v1/chat/completions", {
+                // Properly encoded target URL for CORS proxy compatibility on Vercel
+                const response = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.xkiro.com/v1/chat/completions"), {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${XKIRO_API_KEY}`,
@@ -1241,7 +1241,8 @@
         }
 
         async function fetchAIResponse(modelName, apiMessages) {
-            return await fetch("https://corsproxy.io/?https://api.xkiro.com/v1/chat/completions", {
+            // Properly encoded target URL for CORS proxy compatibility on Vercel
+            return await fetch("https://corsproxy.io/?" + encodeURIComponent("https://api.xkiro.com/v1/chat/completions"), {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${XKIRO_API_KEY}`,
