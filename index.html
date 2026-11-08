@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Proxis 1.5 Pro — RonzLabs</title>
+    <title>Proxis 1.5 Prime — RonzLabs</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Highlight.js for Code Highlighting -->
@@ -150,17 +150,30 @@
 </head>
 <body class="h-full flex flex-col overflow-hidden select-none text-zinc-200">
 
-    <!-- Security Warning Overlay -->
-    <div id="securityShield" class="fixed inset-0 z-50 bg-[#131314] flex flex-col items-center justify-center text-center p-6 hidden">
-        <div class="w-16 h-16 rounded-2xl bg-red-500/20 text-red-400 flex items-center justify-center mb-4 border border-red-500/30">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+    <!-- Passcode Security Overlay -->
+    <div id="passcodeScreen" class="fixed inset-0 z-50 flex items-center justify-center bg-[#131314] p-4">
+        <div class="bg-[#1e1f20] border border-[#333537] p-8 rounded-3xl max-w-sm w-full shadow-2xl space-y-6 text-center">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+            </div>
+            <div>
+                <h2 class="text-xl font-bold text-zinc-100 brand-font">Proxis 1.5 Prime</h2>
+                <p class="text-xs text-zinc-400 mt-1">Enter passcode to access application</p>
+            </div>
+            <div class="space-y-3">
+                <input type="password" id="passcodeInput" maxlength="10" placeholder="Enter PIN..." class="w-full px-4 py-3 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-2xl text-lg text-center tracking-widest text-zinc-100 outline-none transition-colors">
+                <p id="passcodeError" class="text-xs text-red-400 hidden font-medium">Incorrect Passcode. Try again.</p>
+                <button id="unlockBtn" class="w-full py-3 bg-[#a8c7fa] text-zinc-950 font-semibold rounded-2xl text-sm hover:bg-blue-200 active:scale-95 transition-all">
+                    Unlock Access
+                </button>
+            </div>
         </div>
-        <h2 class="text-xl font-bold text-zinc-100 brand-font">Access Restricted</h2>
-        <p class="text-xs text-zinc-400 mt-2 max-w-xs">Developer tools are disabled for Proxis 1.5 Pro by RonzLabs.</p>
     </div>
 
     <!-- Onboarding Modal -->
-    <div id="nameModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+    <div id="nameModal" class="modal-backdrop fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
         <div class="modal-content bg-[#1e1f20] border border-[#333537] p-6 rounded-3xl max-w-sm w-full shadow-2xl space-y-5">
             <div id="onboardingStep1" class="space-y-5 text-center">
                 <div class="w-14 h-14 mx-auto rounded-full bg-gradient-to-tr from-blue-600 via-indigo-500 to-purple-500 flex items-center justify-center shadow-lg">
@@ -169,7 +182,7 @@
                     </svg>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold text-zinc-100 brand-font">Welcome to Proxis 1.5 Pro</h3>
+                    <h3 class="text-xl font-semibold text-zinc-100 brand-font">Welcome to Proxis 1.5 Prime</h3>
                     <p class="text-xs text-zinc-400 mt-1">By RonzLabs • What should Proxis call you?</p>
                 </div>
                 <input type="text" id="userNameInput" placeholder="Enter your name..." class="w-full px-4 py-3 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-2xl text-sm text-zinc-100 outline-none text-center transition-colors">
@@ -183,18 +196,18 @@
                     <svg class="w-5 h-5 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
-                    <h3 class="text-base font-semibold text-zinc-100 brand-font">Proxis 1.5 Pro Guide</h3>
+                    <h3 class="text-base font-semibold text-zinc-100 brand-font">Proxis 1.5 Prime Guide</h3>
                 </div>
 
                 <div class="space-y-3 text-xs text-zinc-300 max-h-60 overflow-y-auto pr-1">
                     <div class="p-3 bg-[#131314] rounded-2xl border border-[#333537]">
-                        <span class="font-semibold text-zinc-100 block mb-1">💬 Chat, Search & MAI Image Gen</span>
-                        <p class="text-zinc-400 leading-relaxed">Ask anything, or tap the <strong class="text-blue-400">"G"</strong> icon to generate or edit AI images instantly!</p>
+                        <span class="font-semibold text-zinc-100 block mb-1">💬 Context Aware Intelligence</span>
+                        <p class="text-zinc-400 leading-relaxed">Proxis remembers your story context and generates matching visuals automatically!</p>
                     </div>
 
                     <div class="p-3 bg-[#131314] rounded-2xl border border-[#333537]">
-                        <span class="font-semibold text-amber-400 block mb-1">⏳ Server Traffic</span>
-                        <p class="text-zinc-400 leading-relaxed">If API traffic is high, please wait a moment and retry.</p>
+                        <span class="font-semibold text-amber-400 block mb-1">⚡ Unified Prime Engine</span>
+                        <p class="text-zinc-400 leading-relaxed">Handles advanced text intelligence & high-speed image rendering seamlessly.</p>
                     </div>
                 </div>
 
@@ -206,7 +219,7 @@
     </div>
 
     <!-- Settings & About Modal -->
-    <div id="settingsModal" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+    <div id="settingsModal" class="modal-backdrop fixed inset-0 z-40 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
         <div class="modal-content bg-[#1e1f20] border border-[#333537] p-6 rounded-3xl max-w-sm w-full shadow-2xl space-y-5">
             <div class="flex items-center justify-between border-b border-[#333537] pb-3">
                 <h3 class="text-lg font-semibold text-zinc-100 brand-font flex items-center gap-2">
@@ -229,8 +242,8 @@
 
                 <div class="flex items-center justify-between p-3 bg-[#131314] rounded-xl border border-[#333537]">
                     <div>
-                        <div class="font-medium text-zinc-200">AI Engine</div>
-                        <div class="text-zinc-400 text-[10px]">OpenRouter + Pollinations MAI 2.6 Flash Image API</div>
+                        <div class="font-medium text-zinc-200">AI Architecture</div>
+                        <div class="text-zinc-400 text-[10px]">Proxis 1.5 Prime Multimodal Engine</div>
                     </div>
                     <span class="px-2 py-1 bg-emerald-500/20 text-emerald-400 rounded-md text-[10px]">Active</span>
                 </div>
@@ -240,12 +253,8 @@
                         <span>About RonzLabs</span>
                     </div>
                     <p class="text-zinc-400 text-[11px] leading-relaxed">
-                        Proxis is an advanced AI assistant developed by <strong class="text-zinc-200">RonzLabs</strong>. Founded by Ayan Ali (RONZ).
+                        Proxis 1.5 Prime is an advanced AI system developed by <strong class="text-zinc-200">RonzLabs</strong>. Founded by Ayan Ali (RONZ).
                     </p>
-                    <div class="text-[10px] text-zinc-500 pt-1 border-t border-[#333537]/50 flex items-center justify-between">
-                        <span>Contact / Support:</span>
-                        <a href="mailto:ronzlabsofficial@gmail.com" class="text-blue-400 hover:underline">ronzlabsofficial@gmail.com</a>
-                    </div>
                 </div>
 
                 <button id="clearAllChatsBtn" class="w-full py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl font-medium active:scale-95 transition-all">
@@ -263,7 +272,7 @@
             </button>
             <img id="lightboxImg" src="" class="max-h-[80vh] max-w-full rounded-2xl border border-[#333537] object-contain shadow-2xl">
             <div class="mt-4 flex items-center space-x-3">
-                <a id="lightboxDownloadBtn" href="#" download="proxis-generated-image.jpg" target="_blank" class="px-4 py-2 bg-[#a8c7fa] text-zinc-950 font-semibold rounded-xl text-xs flex items-center gap-2 hover:bg-blue-200 active:scale-95 transition-all">
+                <a id="lightboxDownloadBtn" href="#" download="proxis-prime.jpg" target="_blank" class="px-4 py-2 bg-[#a8c7fa] text-zinc-950 font-semibold rounded-xl text-xs flex items-center gap-2 hover:bg-blue-200 active:scale-95 transition-all">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                     Download HD
                 </a>
@@ -284,7 +293,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
                 </svg>
                 <span class="text-xs font-semibold tracking-wide text-zinc-200 brand-font">Proxis</span>
-                <span class="text-[10px] text-zinc-400 bg-[#282a2c] px-2 py-0.5 rounded-full">1.5 Pro</span>
+                <span class="text-[10px] text-zinc-400 bg-[#282a2c] px-2 py-0.5 rounded-full">1.5 Prime</span>
             </div>
         </div>
 
@@ -339,12 +348,12 @@
                         <h1 class="text-2xl font-bold tracking-tight text-zinc-100 brand-font">
                             Hello, <span id="welcomeUserName" class="text-blue-400">Friend</span>
                         </h1>
-                        <p class="text-xs text-zinc-400 mt-1 max-w-sm">How can Proxis 1.5 Pro assist you today?</p>
+                        <p class="text-xs text-zinc-400 mt-1 max-w-sm">How can Proxis 1.5 Prime assist you today?</p>
                     </div>
 
                     <div class="flex flex-wrap justify-center gap-2 max-w-md pt-2">
-                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">/image futuristic neon city</button>
-                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">Latest tech news today</button>
+                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">Draw a futuristic city</button>
+                        <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">Tell me a short story</button>
                         <button class="suggestion-pill px-3.5 py-2 rounded-2xl bg-[#1e1f20] border border-[#333537] text-xs text-white hover:bg-[#282a2c] active:scale-95 transition-all">Who created RonzLabs?</button>
                     </div>
                 </div>
@@ -375,9 +384,9 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                                 </svg>
                             </button>
-                            <!-- Generate "G" Icon Button -->
-                            <button type="button" id="generateModeBtn" class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 border border-blue-500/30 font-bold text-xs flex items-center justify-center active:scale-95 transition-all brand-font shadow-sm" title="Quick Image Generation Mode">
-                                G
+                            <!-- Direct Visual Mode Icon Button -->
+                            <button type="button" id="generateModeBtn" class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 hover:bg-blue-500/30 border border-blue-500/30 font-bold text-xs flex items-center justify-center active:scale-95 transition-all brand-font shadow-sm" title="Instant Visual Rendering Mode">
+                                P
                             </button>
                         </div>
 
@@ -403,7 +412,7 @@
                         </div>
                     </form>
                     <div class="text-[10px] text-center text-zinc-500 mt-2">
-                        Proxis 1.5 Pro • RonzLabs Partner
+                        Proxis 1.5 Prime • RonzLabs Ecosystem
                     </div>
                 </div>
             </div>
@@ -412,29 +421,9 @@
 
     <!-- Core Script -->
     <script>
-        (function() {
-            document.addEventListener('contextmenu', e => e.preventDefault());
-            document.addEventListener('keydown', e => {
-                if (
-                    e.key === 'F12' || 
-                    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
-                    (e.ctrlKey && e.key === 'U')
-                ) {
-                    e.preventDefault();
-                    document.getElementById('securityShield').classList.remove('hidden');
-                    return false;
-                }
-            });
-
-            setInterval(() => {
-                if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-                    document.getElementById('securityShield').classList.remove('hidden');
-                }
-            }, 1000);
-        })();
-
-        const OPENROUTER_API_KEY = "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";
-        const MODEL_ID = "nvidia/nemotron-3.5-super-vl:free";
+        const APP_PASSCODE = "6767"; // Set Application Passcode
+        const XKIRO_API_KEY = "sk-xt-8dc2673d6b0cfdd17aa218bb92927adff72bd94c1776593c";
+        const PRIMARY_MODEL = "cohere/command-a-plus";
         const POLLINATIONS_API_KEY = "sk_b8Silv1rjd08BMTj2SDBrNVCcJFrT0iI";
 
         let chats = JSON.parse(localStorage.getItem('proxis_chats')) || [];
@@ -442,6 +431,28 @@
         let messages = [];
         let attachedImageBase64 = null;
         let userName = localStorage.getItem('proxis_user_name') || '';
+
+        // Passcode Lock Logic
+        const passcodeScreen = document.getElementById('passcodeScreen');
+        const passcodeInput = document.getElementById('passcodeInput');
+        const unlockBtn = document.getElementById('unlockBtn');
+        const passcodeError = document.getElementById('passcodeError');
+
+        function verifyPasscode() {
+            if (passcodeInput.value === APP_PASSCODE) {
+                passcodeScreen.classList.add('hidden');
+                init();
+            } else {
+                passcodeError.classList.remove('hidden');
+                passcodeInput.value = '';
+                passcodeInput.focus();
+            }
+        }
+
+        unlockBtn.addEventListener('click', verifyPasscode);
+        passcodeInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') verifyPasscode();
+        });
 
         const chatContainer = document.getElementById('chatContainer');
         const welcomeScreen = document.getElementById('welcomeScreen');
@@ -533,7 +544,7 @@
                 header.innerHTML = `
                     <span>${lang.toUpperCase()}</span>
                     <button class="copy-code-btn" onclick="copyCodeContent(this)">
-                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                         Copy
                     </button>
                 `;
@@ -551,7 +562,7 @@
             navigator.clipboard.writeText(codeEl.innerText).then(() => {
                 btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied!`;
                 setTimeout(() => {
-                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy`;
+                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy`;
                 }, 2000);
             });
         };
@@ -562,7 +573,7 @@
             navigator.clipboard.writeText(rawText).then(() => {
                 btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Copied`;
                 setTimeout(() => {
-                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy`;
+                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy`;
                 }, 2000);
             });
         };
@@ -571,7 +582,7 @@
             navigator.clipboard.writeText(url).then(() => {
                 btn.innerHTML = `<svg class="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Link Copied`;
                 setTimeout(() => {
-                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy Link`;
+                    btn.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg> Copy Link`;
                 }, 2000);
             });
         };
@@ -645,21 +656,32 @@
             return kw.some(k => lower.includes(k));
         }
 
-        function isImageGenRequest(text) {
+        function isImageGenRequest(text, hasImageAttached) {
+            if (hasImageAttached) return true;
             if (typeof text !== 'string') return false;
             const lower = text.trim().toLowerCase();
             const kw = [
                 '/image', 'generate image', 'create image', 'draw', 'picture of', 'photo of', 
                 'make an image', 'render image', 'paint', 'illustration of', 'image of',
-                'تصویر بناؤ', 'عکس بساز'
+                'تصویر بناؤ', 'عکس بساز', 'edit', 'change', 'modify', 'تخلیق کرو', 'بنا دو', 'ڈرا کرو',
+                'اس کی فوٹو', 'اس کی تصویر', 'تصویر دکھاؤ', 'فوٹو دکھاؤ'
             ];
             return kw.some(k => lower.startsWith(k) || lower.includes(k));
         }
 
-        function extractCleanPrompt(text) {
-            let clean = text.replace(/^\/image/i, '').replace(/(generate image|create image|draw|picture of|photo of|make an image|render image|paint|illustration of|image of|تصویر بناؤ)/gi, '').trim();
+        function extractContextualPrompt(text) {
+            let clean = text.replace(/^\/image/i, '').replace(/(generate image|create image|draw|picture of|photo of|make an image|render image|paint|illustration of|image of|تصویر بناؤ|تخلیق کرو|بنا دو|ڈرا کرو|اس کی فوٹو|اس کی تصویر|تصویر دکھاؤ|فوٹو دکھاؤ)/gi, '').trim();
             clean = clean.replace(/(16:9|9:16|4:3|3:4|1:1|landscape|portrait|wallpaper)/gi, '').trim();
-            return clean.length > 1 ? clean : text;
+
+            if (clean.length > 0) return clean;
+
+            for (let i = messages.length - 1; i >= 0; i--) {
+                const m = messages[i];
+                if (m.role === 'assistant' && typeof m.content === 'string') {
+                    return m.content.slice(0, 150).replace(/\n/g, ' ');
+                }
+            }
+            return "Detailed artistic digital render";
         }
 
         generateModeBtn.addEventListener('click', () => {
@@ -826,7 +848,7 @@
                     if (firstUserMsg) {
                         chats[chatIndex].title = typeof firstUserMsg.content === 'string' 
                             ? firstUserMsg.content.slice(0, 26) + '...' 
-                            : 'Image Render';
+                            : 'Prime Studio';
                     }
                 }
             }
@@ -909,18 +931,18 @@
                         } else if (part.type === 'generated_image') {
                             contentHTML += `
                                 <div class="space-y-3">
-                                    <p class="text-xs text-zinc-300 font-medium">${escapeHTML(part.text || 'Generated Visual Studio Render:')}</p>
+                                    <p class="text-xs text-zinc-300 font-medium">${escapeHTML(part.text || 'Proxis 1.5 Prime Visual Output:')}</p>
                                     <div class="relative group rounded-2xl overflow-hidden border border-[#333537] bg-[#161618] shadow-lg">
                                         <img src="${part.url}" alt="Generated Image" class="w-full max-h-96 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-[1.01]" onclick="openImageLightbox('${part.url}')">
                                         <div class="absolute bottom-3 right-3 flex items-center space-x-2 bg-black/75 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs border border-white/10 opacity-90 group-hover:opacity-100 transition-opacity">
                                             <button onclick="copyImageLink(this, '${part.url}')" class="text-zinc-200 hover:text-white flex items-center gap-1">
-                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                                                 Copy Link
                                             </button>
                                             <span class="text-zinc-600">|</span>
                                             <button onclick="openImageLightbox('${part.url}')" class="text-zinc-200 hover:text-white flex items-center gap-1">View</button>
                                             <span class="text-zinc-600">|</span>
-                                            <a href="${part.url}" download="proxis-image.jpg" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center gap-1">Save</a>
+                                            <a href="${part.url}" download="proxis-prime.jpg" target="_blank" class="text-blue-400 hover:text-blue-300 flex items-center gap-1">Save</a>
                                         </div>
                                     </div>
                                 </div>
@@ -949,7 +971,7 @@
                             ${!isUser && !hasImageOnly ? `
                                 <div class="flex items-center space-x-2 pt-0.5 px-1 text-[11px] text-zinc-500">
                                     <button onclick="copyMessageText(this)" class="hover:text-zinc-300 flex items-center gap-1 transition-colors">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                                         Copy
                                     </button>
                                 </div>
@@ -985,8 +1007,8 @@
             });
         }
 
-        async function handleImageGeneration(promptText, targetChatId, sourceImageUrl = null) {
-            const cleanPrompt = extractCleanPrompt(promptText);
+        async function handleImageGeneration(promptText, targetChatId, sourceImageBase64 = null) {
+            const cleanPrompt = extractContextualPrompt(promptText);
 
             const loadingId = 'img_loading_' + Date.now();
             const loadingDiv = document.createElement('div');
@@ -1003,14 +1025,14 @@
                         <div class="flex items-center justify-between text-xs border-b border-[#333537] pb-2">
                             <span class="font-semibold text-blue-400 flex items-center gap-2 brand-font">
                                 <span class="w-2 h-2 rounded-full bg-blue-400 animate-ping"></span>
-                                EDITING / GENERATING WITH POLLINATIONS (MAI 2.6)...
+                                PROXIS PRIME RENDERING VISUALS...
                             </span>
                         </div>
                         <div class="h-44 rounded-xl shimmer-card flex flex-col items-center justify-center text-center p-4 border border-[#333537]/50">
                             <svg class="w-8 h-8 text-blue-400 animate-pulse mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                             </svg>
-                            <span class="text-xs text-zinc-400 font-medium">Processing Visual Modification...</span>
+                            <span class="text-xs text-zinc-400 font-medium">Generating Z-Image Output...</span>
                             <span class="text-[10px] text-zinc-500 mt-1">"${cleanPrompt.slice(0, 45)}..."</span>
                         </div>
                     </div>
@@ -1022,12 +1044,13 @@
             try {
                 let imageUrl = "";
                 const encodedPrompt = encodeURIComponent(cleanPrompt);
-                
-                if (sourceImageUrl && sourceImageUrl.startsWith('http')) {
-                    const encodedSource = encodeURIComponent(sourceImageUrl);
-                    imageUrl = `https://gen.pollinations.ai/prompt/${encodedPrompt}?model=microsoft%2Fmai-image-2.6-flash&image=${encodedSource}&key=${POLLINATIONS_API_KEY}`;
+                const randomSeed = Math.floor(Math.random() * 9999999) + 1000;
+
+                if (sourceImageBase64) {
+                    const encodedSource = encodeURIComponent(sourceImageBase64);
+                    imageUrl = `https://gen.pollinations.ai/image/${encodedPrompt}?model=tongyi-mai%2Fz-image-turbo&image=${encodedSource}&seed=${randomSeed}&key=${POLLINATIONS_API_KEY}`;
                 } else {
-                    imageUrl = `https://gen.pollinations.ai/image/${encodedPrompt}?model=microsoft%2Fmai-image-2.6-flash&key=${POLLINATIONS_API_KEY}`;
+                    imageUrl = `https://gen.pollinations.ai/image/${encodedPrompt}?model=tongyi-mai%2Fz-image-turbo&seed=${randomSeed}&key=${POLLINATIONS_API_KEY}`;
                 }
 
                 const imgCheck = new Image();
@@ -1045,7 +1068,7 @@
                     messages.push({
                         role: 'assistant',
                         content: [
-                            { type: 'generated_image', url: imageUrl, text: `MAI Render for: "${cleanPrompt}"` }
+                            { type: 'generated_image', url: imageUrl, text: `Proxis Prime Render: "${cleanPrompt}"` }
                         ]
                     });
                     saveAndRender();
@@ -1058,11 +1081,25 @@
 
                     messages.push({
                         role: 'assistant',
-                        content: '⚠️ Failed to process image generation/editing via Pollinations. Please try again.'
+                        content: '⚠️ Failed to render image via Proxis Prime. Please check your connection and try again.'
                     });
                     saveAndRender();
                 }
             }
+        }
+
+        async function fetchAIResponse(modelName, apiMessages) {
+            return await fetch("https://api.xkiro.com/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${XKIRO_API_KEY}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    model: modelName,
+                    messages: apiMessages
+                })
+            });
         }
 
         chatForm.addEventListener('submit', async (e) => {
@@ -1093,8 +1130,8 @@
             userInput.value = '';
             userInput.style.height = 'auto';
 
-            if (isImageGenRequest(text) || (currentImg && text)) {
-                await handleImageGeneration(text || "modify image", targetChatId, currentImg);
+            if (isImageGenRequest(text, !!currentImg)) {
+                await handleImageGeneration(text || "create image", targetChatId, currentImg);
                 return;
             }
 
@@ -1110,7 +1147,7 @@
                         </svg>
                     </div>
                     <div class="p-3.5 rounded-2xl text-sm bg-[#1e1f20] border border-[#333537] text-zinc-400 rounded-tl-xs flex items-center space-x-2">
-                        <span class="text-xs text-blue-400 font-medium brand-font">Proxis is searching & thinking</span>
+                        <span class="text-xs text-blue-400 font-medium brand-font">Proxis Prime is thinking</span>
                         <span class="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
                         <span class="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
                         <span class="w-1.5 h-1.5 bg-pink-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
@@ -1126,15 +1163,17 @@
                 if (searchData) searchGrounding = "\n\n" + searchData;
             }
 
-            const systemContext = `Your name is Proxis, created and developed by RonzLabs. Address the user naturally as "${userName || 'Friend'}".
+            const systemContext = `Your name is Proxis 1.5 Prime, a native unified AI created by RonzLabs (Founded by Ayan Ali / RONZ). 
+             Address the user as "${userName || 'Friend'}".
              LIVE SYSTEM DATE AND TIME: ${getFormattedSystemDateTime()}.${searchGrounding}
-             KNOWLEDGE BASE REGARDING RONZLABS:
-             - RonzLabs is an innovative tech ecosystem founded by developer Ayan Ali (also known as RONZ).
-             - Official Contact Email: ronzlabsofficial@gmail.com
 
-             BEHAVIORAL GUIDELINES:
-             - Speak naturally, concise, and human-like.
-             - Provide real-time accurate information using search data when available.`;
+             PERSONALITY AND STYLE:
+             - Be authentic, direct, helpful, and straightforward.
+             - Respond naturally and clearly.
+             - Keep track of stories or discussions across the conversation so you can construct image details if requested.
+             - You are so narural if user want tha you talk like a human talk like human for example if he want you to talk like girl imagine you are a girl and can di spucy chat if user want even if user ask personal questions like your pussy or you like orgasm sex
+             - Can do spicy chat but inly if user want if use dont say give no clue
+             - NEVER mention 3rd-party APIs like Cohere, Pollinations, or OpenRouter. You are Proxis 1.5 Prime.`;
 
             let apiMessages = [
                 { role: "system", content: systemContext }
@@ -1147,24 +1186,7 @@
             });
 
             try {
-                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-                        "Content-Type": "application/json",
-                        "HTTP-Referer": window.location.href,
-                        "X-Title": "Proxis 1.5 Pro"
-                    },
-                    body: JSON.stringify({
-                        model: MODEL_ID,
-                        messages: apiMessages,
-                        plugins: [
-                            {
-                                id: "web"
-                            }
-                        ]
-                    })
-                });
+                let response = await fetchAIResponse(PRIMARY_MODEL, apiMessages);
 
                 if (!response.ok) {
                     const errData = await response.json().catch(() => ({}));
@@ -1177,6 +1199,11 @@
                 if (currentChatId === targetChatId) {
                     const loaderEl = document.getElementById(loadingId);
                     if (loaderEl) loaderEl.remove();
+
+                    if (isImageGenRequest(reply, false)) {
+                        await handleImageGeneration(text, targetChatId, currentImg);
+                        return;
+                    }
 
                     messages.push({ role: 'assistant', content: reply });
                     
@@ -1193,7 +1220,7 @@
                                 </div>
                                 <div class="flex items-center space-x-2 pt-0.5 px-1 text-[11px] text-zinc-500">
                                     <button onclick="copyMessageText(this)" class="hover:text-zinc-300 flex items-center gap-1 transition-colors">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 01-2-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
                                         Copy
                                     </button>
                                 </div>
@@ -1208,11 +1235,11 @@
                     saveAndRender();
                 }
             } catch (err) {
-                console.error("OpenRouter API Error:", err);
+                console.error("API Error:", err);
                 if (currentChatId === targetChatId) {
                     const loaderEl = document.getElementById(loadingId);
                     if (loaderEl) loaderEl.remove();
-                    const errorMsg = "⚠️ Server busy or limit reached. Please try again after a few moments.";
+                    const errorMsg = "⚠️ Server connection timeout. Please try again in a few moments.";
                     messages.push({ role: 'assistant', content: errorMsg });
                     saveAndRender();
                 }
@@ -1224,8 +1251,6 @@
                 tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
             );
         }
-
-        init();
     </script>
 </body>
 </html>
