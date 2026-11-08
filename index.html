@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- SEO Meta Tags -->
-    <title>Proxis AI </title>
+    <title>Proxis 1.5 Prime — Advanced AI & Visual Engine by RonzLabs</title>
     <meta name="description" content="Proxis 1.5 Prime is a state-of-the-art multimodal AI assistant and intelligent visual rendering engine developed by RonzLabs.">
     <meta name="keywords" content="Proxis 1.5 Prime, RonzLabs, Ayan Ali, AI Assistant, Image Generator, Web Utility, Progressive Web App">
     <meta name="author" content="Ayan Ali (RONZ) — RonzLabs">
@@ -175,7 +175,7 @@
                 <p class="text-xs text-zinc-400 mt-1">Enter passcode to access application</p>
             </div>
             <div class="space-y-3">
-                <input type="password" id="passcodeInput" maxlength="10" placeholder="Enter Access Code" class="w-full px-4 py-3 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-2xl text-lg text-center tracking-widest text-zinc-100 outline-none transition-colors">
+                <input type="password" id="passcodeInput" maxlength="10" placeholder="Enter PIN (6767)..." class="w-full px-4 py-3 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-2xl text-lg text-center tracking-widest text-zinc-100 outline-none transition-colors">
                 <p id="passcodeError" class="text-xs text-red-400 hidden font-medium">Incorrect Passcode. Try again.</p>
                 <button id="unlockBtn" class="w-full py-3 bg-[#a8c7fa] text-zinc-950 font-semibold rounded-2xl text-sm hover:bg-blue-200 active:scale-95 transition-all">
                     Unlock Access
@@ -292,7 +292,7 @@
         <div class="modal-content bg-[#1e1f20] border border-[#333537] p-6 rounded-3xl max-w-xs w-full shadow-2xl space-y-4 text-center">
             <h3 class="text-base font-bold text-zinc-100 brand-font">Enter 18+ Mode Passcode</h3>
             <p class="text-xs text-zinc-400">Enter PIN to activate unrestricted potential prompts.</p>
-            <input type="password" id="potentialPinInput" maxlength="10" placeholder="PIN" class="w-full px-4 py-2.5 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-xl text-center text-sm text-zinc-100 outline-none">
+            <input type="password" id="potentialPinInput" maxlength="10" placeholder="PIN (585858)..." class="w-full px-4 py-2.5 bg-[#131314] border border-[#333537] focus:border-[#a8c7fa] rounded-xl text-center text-sm text-zinc-100 outline-none">
             <p id="potentialPinError" class="text-xs text-red-400 hidden font-medium">Incorrect PIN Code.</p>
             <div class="flex gap-2 pt-1">
                 <button id="cancelPotentialBtn" class="flex-1 py-2 bg-zinc-700 text-zinc-200 font-semibold rounded-xl text-xs hover:bg-zinc-600 transition-all">Cancel</button>
@@ -618,7 +618,6 @@
             }
         });
 
-        // Direct Blob Download Helper
         window.downloadImageFile = async function(url) {
             try {
                 const response = await fetch(url);
@@ -1119,7 +1118,8 @@
 
             try {
                 if (updateStatusCallback) updateStatusCallback("Proxis Prime is analyzing & sanitizing prompt...");
-                const response = await fetch("https://api.xkiro.com/v1/chat/completions", {
+                // Using CORS Proxy for production domain compatibility
+                const response = await fetch("https://corsproxy.io/?https://api.xkiro.com/v1/chat/completions", {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${XKIRO_API_KEY}`,
@@ -1241,7 +1241,7 @@
         }
 
         async function fetchAIResponse(modelName, apiMessages) {
-            return await fetch("https://api.xkiro.com/v1/chat/completions", {
+            return await fetch("https://corsproxy.io/?https://api.xkiro.com/v1/chat/completions", {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${XKIRO_API_KEY}`,
